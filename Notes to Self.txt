@@ -1,0 +1,18 @@
+Finish error reading and workaround
+
+ls /dev/ | grep -ci 'rdisk' this gives partitions, not good but a workaround is needed so the following code can be looped until all disks are checked:
+
+Detect SD card by [code] diskutil info /dev/rdiskN | grep -i 'Protocol: Secure Digital'
+
+Something like numVol=$(ls /Volumes/ -1 | wc -l) to count Volumes in that directory then volNum='0' to set starting disk as rdisk$volNum and loop until you have checked all $numVol disks. 
+
+See code:
+
+#!/bin/bash 
+COUNTER=$(ls -1 /Volumes/ | wc -l)
+volNum='0'
+until [  $volNum -eq $COUNTER ]; do
+echo rdisk$volNum
+let volNum=volNum+1
+done
+         
