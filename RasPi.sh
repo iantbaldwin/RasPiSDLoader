@@ -51,7 +51,14 @@ read -e RPImage
 sudo dd bs=1m if=$RPImage of=/dev/rdisk1
 
 # Verify successful restore
-sucRe=$(ls /dev/rdisk1s1 | grep -xci 'config.txt')
+# Get disk name
+diskutil info /dev/rdisk1s1 | grep -i 'Volume Name:' > /tmp/volNameInt.txt
+volNameFin=$(awk '{print $3}' ~/Desktop/volNameInt.txt)
+echo Volume name is :$volNameFin
+rm -rf /tmp/volNameInt.txt
+
+# Check if config.txt is there
+sucRe=$(ls /Volume/$volNameFin | grep -xci 'config.txt')
 if [ "$sucRe" -eq "$exptAns" ]
 then
 echo "Disk successfully created"
