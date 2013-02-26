@@ -33,6 +33,7 @@ echo "Image restore will now begin"
 
 # See if rdisk1 is present (Should be the SD card if nothing else is hooked up)
 diskPres=$(ls /dev/ | grep -xc 'rdisk1')
+diskPres=$(ls /dev/ | grep -xc '$sdCard')
 exptAns='1'
 
 if [ "$diskPres" -eq "$exptAns" ]
@@ -42,6 +43,7 @@ echo "Unmounting disk"
 
 # Seeing if unmount was successful
 sucUn=$(diskutil unmountDisk /dev/rdisk1 | grep -ci 'successful')
+sucUn=$(diskutil unmountDisk /dev/$sdCard | grep -ci 'successful')
 if [ "$sucUn" -eq "$exptAns" ] 
 then
 echo "Disk unmounted"
@@ -50,12 +52,14 @@ echo "Disk unmounted"
 echo "Drag preferred OS ing into Terminal and press [ENTER]:"
 read -e RPImage 
 sudo dd bs=1m if=$RPImage of=/dev/rdisk1
+sudo dd bs=1m if=$RPImage of=/dev/$sdCard
 
 # Verify successful restore
 
 # Get disk name
 sleep 5
 diskutil info /dev/rdisk1s1 | grep -i 'Mount Point:' > /tmp/volNameInt.txt
+diskutil info /dev/$sdCards1 | grep -i 'Mount Point:' > /tmp/volNameInt.txt
 volNameFin=$(awk '{print $3}' /tmp/volNameInt.txt)
 echo Volume mounted at :$volNameFin
 rm -rf /tmp/volNameInt.txt
@@ -69,9 +73,11 @@ echo "Disk will now be ejected"
 
 # Eject Disk
 diskutil eject /dev/rdisk1 > /dev/null 2
+diskutil eject /dev/$sdCard > /dev/null 2
 
 # Check if disk is ejected
 dEJCT=$(ls /dev/ | grep -xci "rdisk1")
+dEJCT=$(ls /dev/ | grep -xci "$sdCard")
 exptAns='0'
 if [ "$dEJCT" -eq "$exptAns" ]
 then 
@@ -86,6 +92,7 @@ else
 echo "Error:Disk failed to unmount properly"
 # Bad unmount (Will add force unmount)
 diskTh=$(diskutil list | grep -xc 'rdisk1')
+diskTh=$(diskutil list | grep -xc '$sdCard')
 if [ "$diskTh" -eq "$exptAns" ] 
 then
 echo "Disk appears to be mounted"
