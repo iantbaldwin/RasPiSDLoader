@@ -47,6 +47,7 @@ echo "Disk unmounted"
 
 # Restoring SD card from supplied image
 echo "Drag Distro into Terminal and press [ENTER]:"
+echo "Drag preferred OS ing into Terminal and press [ENTER]:"
 read -e RPImage 
 sudo dd bs=1m if=$RPImage of=/dev/rdisk1
 
