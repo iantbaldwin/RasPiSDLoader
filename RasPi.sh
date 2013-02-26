@@ -44,7 +44,10 @@ sudo dd bs=1m if=$RPImage of=/dev/$sdCard
 
 # Get disk name
 sleep 5
-diskutil info /dev/$sdCards1 | grep -i 'Mount Point:' > /tmp/volNameInt.txt
+echo $sdCard's1' > /tmp/sDrive.txt
+sdCard=$(awk '{print $1}' /tmp/sDrive.txt)
+echo $sdCard
+diskutil info /dev/$sdCard | grep -i 'Mount Point:' > /tmp/volNameInt.txt
 volNameFin=$(awk '{print $3}' /tmp/volNameInt.txt)
 echo Volume mounted at :$volNameFin
 rm -rf /tmp/volNameInt.txt
