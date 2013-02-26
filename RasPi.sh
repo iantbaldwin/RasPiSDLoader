@@ -46,7 +46,6 @@ then
 echo "Disk unmounted"
 
 # Restoring SD card from supplied image
-echo "Drag Distro into Terminal and press [ENTER]:"
 echo "Drag preferred OS ing into Terminal and press [ENTER]:"
 read -e RPImage 
 sudo dd bs=1m if=$RPImage of=/dev/rdisk1
@@ -68,7 +67,6 @@ echo "Disk successfully created"
 echo "Disk will now be ejected"
 
 # Eject Disk
-diskutil eject /dev/rdisk1
 diskutil eject /dev/rdisk1 > /dev/null 2
 
 # Check if disk is ejected
