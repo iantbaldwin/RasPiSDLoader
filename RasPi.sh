@@ -60,7 +60,7 @@ echo "Disk successfully created"
 echo "Disk will now be ejected"
 
 # Eject Disk
-diskutil eject /dev/$sdCard > /dev/null 2
+diskutil eject /dev/$sdCard > /dev/null 2>&1
 
 # Check if disk is ejected
 dEJCT=$(ls /dev/ | grep -xci $sdCard)
