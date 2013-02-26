@@ -28,6 +28,7 @@ function countdown
 
 echo "Please eject all external media and insert your RasPi SD card"
 countdown "00:00:15"
+
 echo "Image restore will now begin"
 
 # See if rdisk1 is present (Should be the SD card if nothing else is hooked up)
