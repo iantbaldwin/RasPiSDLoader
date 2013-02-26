@@ -26,9 +26,6 @@ function countdown
 }
 
 
-echo "Please eject all external media and insert your RasPi SD card"
-countdown "00:00:15"
-
 # Find SD Card
 
 exptVal='1'
