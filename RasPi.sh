@@ -70,7 +70,7 @@ diskutil eject /dev/rdisk1
 # Check if disk is ejected
 dEJCT=$(ls /dev/ | grep -xci "rdisk1")
 exptAns='0'
-if [ "$dEJCT" -eq "$exptAns"]
+if [ "$dEJCT" -eq "$exptAns" ]
 then 
 echo "Disc ejected. Enjoy your Pi"
 # Done
