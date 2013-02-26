@@ -38,7 +38,7 @@ echo "Disk unmounted"
 # Restoring SD card from supplied image
 echo "Drag preferred OS .img into Terminal and press [ENTER]:"
 read -e RPImage 
-sudo dd bs=1m if=$RPImage of=/dev/$sdCard
+sudo dd bs=1m if=$RPImage of=/dev/$sdCard > /dev/null
 
 # Verify successful restore
 
