@@ -29,6 +29,22 @@ function countdown
 echo "Please eject all external media and insert your RasPi SD card"
 countdown "00:00:15"
 
+# Find SD Card
+
+exptVal='1'
+         COUNTER=$(ls -1 /Volumes/ | wc -l)
+	 volNum='0'
+         until [  $volNum -eq $COUNTER ]; do
+             sdCardTest=$(diskutil info rdisk$volNum | grep -ci 'Protocol:                 Secure Digital')
+if [ "$sdCardTest" -eq "$exptVal" ]
+then 
+echo "rdisk$volNum" > /tmp/SDcard.txt
+fi
+             let volNum=volNum+1
+         done
+sdCard=$(awk '{print $1}' /tmp/SDcard.txt)
+echo The SD card is located at: /dev/$sdCard
+
 echo "Image restore will now begin"
 
 # See if rdisk1 is present (Should be the SD card if nothing else is hooked up)
