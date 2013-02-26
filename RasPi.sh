@@ -33,6 +33,7 @@ echo "Image restore will now begin"
 
 # See if rdisk1 is present (Should be the SD card if nothing else is hooked up)
 diskPres=$(ls /dev/ | grep -xc 'rdisk1')
+# See if SD is present
 diskPres=$(ls /dev/ | grep -xc '$sdCard')
 exptAns='1'
 
