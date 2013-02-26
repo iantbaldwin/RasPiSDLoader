@@ -49,7 +49,7 @@ sdCard=$(awk '{print $1}' /tmp/sDrive.txt)
 
 diskutil info /dev/$sdCard | grep -i 'Mount Point:' > /tmp/volNameInt.txt
 volNameFin=$(awk '{print $3}' /tmp/volNameInt.txt)
-echo Volume mounted at :$volNameFin
+echo Volume created at :$volNameFin
 rm -rf /tmp/volNameInt.txt
 
 # Check if config.txt is there
