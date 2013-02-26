@@ -69,6 +69,7 @@ echo "Disk will now be ejected"
 
 # Eject Disk
 diskutil eject /dev/rdisk1
+diskutil eject /dev/rdisk1 > /dev/null 2
 
 # Check if disk is ejected
 dEJCT=$(ls /dev/ | grep -xci "rdisk1")
