@@ -48,7 +48,7 @@ echo The SD card is located at: /dev/$sdCard
 echo "Image restore will now begin"
 
 # See if SD is present
-diskPres=$(ls /dev/ | grep -xc '$sdCard')
+diskPres=$(ls /dev/ | grep -xc $sdCard)
 exptAns='1'
 
 if [ "$diskPres" -eq "$exptAns" ]
@@ -87,7 +87,7 @@ echo "Disk will now be ejected"
 diskutil eject /dev/$sdCard > /dev/null 2
 
 # Check if disk is ejected
-dEJCT=$(ls /dev/ | grep -xci "$sdCard")
+dEJCT=$(ls /dev/ | grep -xci $sdCard)
 exptAns='0'
 if [ "$dEJCT" -eq "$exptAns" ]
 then 
@@ -101,7 +101,7 @@ fi
 else
 echo "Error:Disk failed to unmount properly"
 # Bad unmount (Will add force unmount)
-diskTh=$(diskutil list | grep -xc '$sdCard')
+diskTh=$(diskutil list | grep -xc $sdCard)
 if [ "$diskTh" -eq "$exptAns" ] 
 then
 echo "Disk appears to be mounted"

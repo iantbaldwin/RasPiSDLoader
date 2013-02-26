@@ -12,3 +12,18 @@ fi
          done
 sdCard=$(awk '{print $1}' /tmp/SDcard.txt)
 echo The SD card is located at: /dev/$sdCard
+
+echo "Image restore will now begin"
+
+# See if SD is present
+diskPres=$(ls /dev/ | grep -xci $sdCard)
+echo $diskPres
+exptAns='1'
+
+if [ "$diskPres" -eq "$exptAns" ]
+then
+echo "Disk found..."
+echo "Unmounting disk"
+else
+echo "Failure"
+fi
