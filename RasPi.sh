@@ -58,7 +58,6 @@ echo Volume name is :$volNameFin
 rm -rf /tmp/volNameInt.txt
 
 # Check if config.txt is there
-sucRe=$(ls /Volume/$volNameFin | grep -xci 'config.txt')
 sucRe=$(ls /Volumes/$volNameFin | grep -xci 'config.txt')
 if [ "$sucRe" -eq "$exptAns" ]
 then
