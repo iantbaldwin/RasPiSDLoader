@@ -53,6 +53,7 @@ sudo dd bs=1m if=$RPImage of=/dev/rdisk1
 # Verify successful restore
 
 # Get disk name
+sleep 5
 diskutil info /dev/rdisk1s1 | grep -i 'Mount Point:' > /tmp/volNameInt.txt
 volNameFin=$(awk '{print $3}' /tmp/volNameInt.txt)
 echo Volume mounted at :$volNameFin
