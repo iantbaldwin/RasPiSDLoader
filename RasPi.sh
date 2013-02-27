@@ -30,7 +30,7 @@ fi
 # Name SD Card
 sdCard=$(awk '{print $1}' /tmp/SDcard.txt)
 echo The SD card is located at: /dev/$sdCard
-
+rm -rf /tmp/SDcard.txt
 echo "Image restore will now begin"
 
 # See if SD is present
