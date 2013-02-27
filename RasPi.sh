@@ -15,6 +15,7 @@ echo "rdisk$volNum" > /tmp/SDcard.txt
 fi
              let volNum=volNum+1
          done
+
 exptVal='1'
          COUNTER=$(ls -1 /Volumes/ | wc -l)
 	 volNum='0'
@@ -37,6 +38,7 @@ sdCard=$(awk '{print $1}' /tmp/SDcard.txt)
 echo The SD card is located at: /dev/$sdCard
 rm -rf /tmp/SDcard.txt
 echo "Image restore will now begin"
+
 
 # See if SD is present
 diskPres=$(ls /dev/ | grep -xc $sdCard)
