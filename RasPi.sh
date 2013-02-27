@@ -104,3 +104,6 @@ echo "Will attempt to force unmount"
 fi
 fi
 fi
+else
+echo "SD card not found. Please make sure one is connected"
+fi
