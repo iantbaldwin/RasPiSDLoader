@@ -26,6 +26,11 @@ echo "rdisk$volNum" > /tmp/SDcard.txt
 fi
              let volNum=volNum+1
          done
+filEx=$(ls /tmp/ | grep -xci 'SDcard.txt')
+exptVal='1'
+
+if [ "$filEx" -eq "$exptVal" ]
+then
 
 # Name SD Card
 sdCard=$(awk '{print $1}' /tmp/SDcard.txt)
