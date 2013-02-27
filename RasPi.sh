@@ -64,6 +64,7 @@ sudo dd bs=1m if=$RPImage of=/dev/$sdCard > /dev/null
 sleep 5
 echo $sdCard's1' > /tmp/sDrive.txt
 sdCard=$(awk '{print $1}' /tmp/sDrive.txt)
+rm -rf /tmp/sDrive.txt
 
 diskutil info /dev/$sdCard | grep -i 'Mount Point:' > /tmp/volNameInt.txt
 volNameFin=$(awk '{print $3}' /tmp/volNameInt.txt)
