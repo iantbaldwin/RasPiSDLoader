@@ -1,0 +1,7 @@
+Wheezy : http://files.velocix.com/c1410/images/raspbian/2013-02-09-wheezy-raspbian/2013-02-09-wheezy-raspbian.zip
+
+Soft-Point Wheezy : http://files.velocix.com/c1410/images/debian/7/2012-08-08-wheezy-armel/2012-08-08-wheezy-armel.zip
+
+Arch Linux : http://files.velocix.com/c1410/images/archlinuxarm/archlinux-hf-2013-02-11/archlinux-hf-2013-02-11.zip
+
+Risc OS : http://files.velocix.com/c1410/images/riscos/riscos-2012-11-01-RC6/riscos-2012-11-01-RC6.zip

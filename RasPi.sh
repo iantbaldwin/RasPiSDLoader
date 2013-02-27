@@ -15,6 +15,19 @@ echo "rdisk$volNum" > /tmp/SDcard.txt
 fi
              let volNum=volNum+1
          done
+exptVal='1'
+         COUNTER=$(ls -1 /Volumes/ | wc -l)
+	 volNum='0'
+         until [  $volNum -eq $COUNTER ]; do
+             sdCardTest=$(diskutil info rdisk$volNum | grep -ci 'SD')
+if [ "$sdCardTest" -eq "$exptVal" ]
+then 
+echo "rdisk$volNum" > /tmp/SDcard.txt
+fi
+             let volNum=volNum+1
+         done
+
+# Name SD Card
 sdCard=$(awk '{print $1}' /tmp/SDcard.txt)
 echo The SD card is located at: /dev/$sdCard
 
