@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 usage()
@@ -92,14 +91,14 @@ sucRe=$(ls $volNameFin | grep -xci 'config.txt')
 if [ "$sucRe" -eq "$exptAns" ]
 then
 echo "Disk successfully created"
-echo "Disk will now be ejected"
+echo "Disk will now be mounted"
 
 # Eject Disk
-diskutil eject /dev/$sdCard > /dev/null 2>&1
+diskutil mount /dev/$sdCard > /dev/null 2>&1
 
-# Check if disk is ejected
+# Check if disk is mounted
 dEJCT=$(ls /dev/ | grep -xci $sdCard)
-exptAns='0'
+exptAns='1'
 if [ "$dEJCT" -eq "$exptAns" ]
 then 
 echo "Disc ejected. Enjoy your Pi"
@@ -127,7 +126,8 @@ fi
 
 
 backup()
-{exptVal='1'
+{
+exptVal='1'
          COUNTER=$(ls -1 /Volumes/ | wc -l)
 	 volNum='0'
          until [  $volNum -eq $COUNTER ]; do
@@ -194,7 +194,6 @@ echo Verifying backup
 
 diskutil info $sdCard | grep 'Total Size:' > /tmp/sDrive.txt
 exptVal=$(awk '{print $5}' /tmp/sDrive.txt)
-
 rm -rf /tmp/sDrive.txt
 
 
@@ -202,7 +201,6 @@ ls -l ~/Desktop | grep $RPImage > /tmp/sDrive1.txt
 dBup=$(awk '{print $5}' /tmp/sDrive1.txt)
 echo '('$dBup > /tmp/sDrive1.txt
 dBup=$(awk '{print $1}' /tmp/sDrive1.txt)
-
 rm -rf /tmp/sDrive1.txt
 
 if [ "$dBup" = "$exptVal" ]
@@ -212,6 +210,10 @@ diskutil mount $sdCard
 echo SD Card mounted
 else
 echo "Disk was not backed up successfully"
+echo $RPImage'.img' > /tmp/sDrive.txt
+exptVal=$(awk '{print $1}' /tmp/sDrive.txt)
+rm -rf /tmp/sDrive.txt
+rm -rf ~/Desktop/$RPImage
 fi
 
 else
@@ -230,7 +232,7 @@ echo "SD card not found. Please make sure one is connected"
 fi
 }
 
-while getopts “brch:” OPTION
+while getopts "brch:" OPTION
 do
      case $OPTION in
          h)
@@ -239,24 +241,21 @@ do
              ;;
          b)
            backup
-	    exit 1
             ;;
          r)
 	    restore
-      	    exit 1
-            ;;
-         br)
-            backup
-	    restore
-      	    exit 1
             ;;
          c)
             echo "You have selected image copy config. This is not yet supported"
 	    exit 1
             ;;
-         ?)
+         *)
              usage
              exit
              ;;
      esac
 done
+if [ $# -eq 0 ] ; then
+    usage
+    exit 1
+fi 
