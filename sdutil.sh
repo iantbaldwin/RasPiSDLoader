@@ -15,8 +15,8 @@ EOF
 
 restore()
 {
- # Find SD Card
-
+# Find SD Card
+# Look for card using Protocol
 exptVal='1'
          COUNTER=$(ls -1 /Volumes/ | wc -l)
 	 volNum='0'
@@ -28,7 +28,7 @@ echo "rdisk$volNum" > /tmp/SDcard.txt
 fi
              let volNum=volNum+1
          done
-
+# Look for card using device name
 exptVal='1'
          COUNTER=$(ls -1 /Volumes/ | wc -l)
 	 volNum='0'
